@@ -1,0 +1,47 @@
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Convertidor de Monedas
+            </h1>
+        </div>
+    </div>
+</section>
+
+<div class="container is-max-desktop">
+    <div class="field">
+        <label class="label">Ingrese Cantidad</label>
+        <div class="control">
+            <input class="input" type="number" (input)="convertir()" [(ngModel)]="cantidad" placeholder="Ingrese Cantidad">
+        </div>
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-body">
+            <div class="field is-expanded">
+                <label class="label">Tengo</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select [(ngModel)]="tengo" (change)="convertir()">
+                            <option [value]="moneda.name" *ngFor="let moneda of monedas">{{ moneda.desc }}
+                                {{ moneda.name }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-expanded">
+                <label class="label">Quiero</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select [(ngModel)]="quiero" (change)="convertir()">
+                            <option [value]="moneda.name" *ngFor="let moneda of monedas">{{ moneda.desc }}
+                                {{ moneda.name }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p *ngIf="cantidad > 0" class="is-size-4 has-text-centered">{{cantidad}} {{tengo}} son {{total | number: '0.2-2'}} {{quiero}}</p>
+</div>
